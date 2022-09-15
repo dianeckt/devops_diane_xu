@@ -1,0 +1,24 @@
+{
+  "name": "ece-labs-2022",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devops-gh-2022/ece-labs-2022.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devops-gh-2022/ece-labs-2022/issues"
+  },
+  "homepage": "https://github.com/devops-gh-2022/ece-labs-2022#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
