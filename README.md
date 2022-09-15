@@ -1,3 +1,3 @@
 Hello everyone
 this is our readme in the develop branch
-C diane qui aura le conflit pas moi
+C xu qui aura le conflit pas moi !
