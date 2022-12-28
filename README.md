@@ -1,68 +1,96 @@
-# User API web application
+# devops_project_CHANKYTO_CHEN
+devops project 2022-2023
 
-It is a basic NodeJS web application exposing REST API that creates and stores user parameters in [Redis database](https://redis.io/).
 
-## Functionality
+## Auteurs
+* Diane CHAN KY TO
+* Xu CHEN
 
-1. Start a web server
-2. Create a user
 
-## Installation
+## Travaux effectués
+1. Création d'une application web 
+    - langage : javascript
+    - gestion d'utilisateurs : création, lecture, mise à jour, suppression
+    - utilisateurs stockés dans une database avec Redis
+    - tests avec npm et Redis : unité (création des utilisateurs), API (gestion des utilisateurs via l'API), 
+        configuration (chargement de différentes configurations), connexion (à Redis)
+    - health check endpoint garantissant que l'application soit fonctionnelle
+2. Création d'un script de bienvenue
+3. CI/CD avec la plateforme de déploiement Heroku
+4. Configuration et approvisionnement d'un environnement virtuel et exécution de l'application en utilisant l'approche IaC
+    - Imperative en utilisant Vagrant avec Shell 
+    - Declarative en installant GitLab et utilisant Vagrant et Ansible
+    - Declarative en configurant des health check 
+5. Construire une image de l'application avec Docker
+6. Container orchestration en utilisant Docker Compose
+7. Container orchestration en utilisant Kubernetes 
+    - Kubernetes déploiement
+    - déploiement en utilisant un fichier Manifest yaml
+    - création d'un persistent volume et persistent volume claim
+8. Création d'un service mesh avec Istio
+9. Surveillance de notre application conteneurisée
 
-This application is written on NodeJS and it uses Redis database.
 
-1. [Install NodeJS](https://nodejs.org/en/download/)
 
-2. [Install Redis](https://redis.io/download)
+## Captures d'écran des travaux effectués
+Toutes les captures d'écran ont été placées dans le document Word "Devops project rapport.odt" de ce repo. Elles sont les preuves visuelles du bon fonctionnement de nos travaux.
 
-3. Install application
 
-Go to the root directory of the application (where `package.json` file located) and run:
+## Liens nécessaires avec les plateformes et outils intégrés
+- Redis                     
+- npm                       
+- Heroku                    
+- Vagrant                   
+- Docker 
+- Kubernetes
+- Istio
+- Prometheus 
+- Grafana
 
-```
-npm install 
-```
 
-## Usage
+## Instructions/Commandes pour procéder à :
+1. Installation/Préparation de notre environnement 
+    - Veillez à avoir téléchargé tous les outils listés ci-dessus
+    - Lancer le server redis : 'redis-server'
+    - Lancer Docker 
+    - Lancer minikube avec Docker comme driver 'minikube start --driver=docker' puis vérification 'minikube status'
 
-1. Start a web server
+2. Lancer le script de bienvenue (dans lab-3) : 'npm run bonjour' 
 
-From the root directory of the project run:
+3. Lancement des tests (dans lab-3) 
+    - manuellement : 'npm test'
+    - automatique : à chaque commit sur la branche main avec Heroku
 
-```
-npm start
-```
+4. Configuration et approvisionnement d'un environnement virtuel et exécution de l'application en utilisant l'approche IaC (dans vagrantfile)
+    - Initialisation : 'vagrant init'
+    - Lancement des fichiers de configuration : 'vagrant up'
+    - Lancement de la VM : 'vagrant ssh'
 
-It will start a web server available in your browser at http://localhost:3000.
+5. Constuire une image de l'application (dans lab-6-docker/bienvenue_docker)
+    - Build : 'docker build -t bienvenue_docker .'
+    - Run : 'docker run -p 12345:2309 -d bienvenue_docker'
+    - Vérification : ouvrir dans le navigateur la page 'http://localhost:12345/'
 
-2. Create a user
+6. Récupération de l'image créée précédemment via un autre pc
+    - récupération de l'image : 'docker pull dckt/bienvenue_docker'
+    - Run : 'docker run -p 12345:2309 -d dckt/bienvenue_docker'
+    - Vérification : ouvrir dans le navigateur la page 'http://localhost:12345/'
 
-Send a POST (REST protocol) request using terminal:
+7. Container orchestration avec Docker (dans lab-6-docker/bienvenue-docker-compose)
+    - Build : 'docker-compose up'
+    - Vérification : ouvrir dans le navigateur la page 'http://localhost:1010/'
 
-```bash
-curl --header "Content-Type: application/json" \
-  --request POST \
-  --data '{"username":"sergkudinov","firstname":"sergei","lastname":"kudinov"}' \
-  http://localhost:3000/user
-```
+8. Container orchestration avec Kubernetes (dans lab-6-docker/bienvenue-docker-compose)
+    - Cration d'un nouveau déploiement : 'kubectl create deployment kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcamp:v1'
+    - Utilisation du service : 'minikube service kubernetes-bootcamp-service'
 
-It will output:
+9. Déploiement avec un Manifest yaml (dans lab-7-docker-docker_orchestration_Kubernetes)
+    - Application du déploiement et du service : 'kubectl apply -f deployment.yaml' et 'kubectl apply -f service.yaml'
+    - Utilisation du service : 'minikube service kubernetes-bootcamp-service'
 
-```
-{"status":"success","msg":"OK"}
-```
+10. Création d'un persistent volume et persistent volume claim (dans lab-7-docker-docker_orchestration_Kubernetes)
+    - Application du persistent volume : 'kubectl apply -f pv_volume.yaml'  
+    - Application du persistent volume claim : 'kubectl apply -f https://k8s.io/examples/pods/storage/pv-claim.yaml'  
 
-Another way to test your REST API is to use [Postman](https://www.postman.com/).
 
-## Testing
 
-From the root directory of the project, run:
-
-```
-npm test
-```
-
-## Author
-
-Sergei Kudinov   
-sergei@adaltas.com
